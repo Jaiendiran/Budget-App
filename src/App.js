@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import AddBudgetModal from './components/AddBudgetModal';
 import AddExpenseModal from './components/AddExpenseModal';
 import BudgetCard from './components/Budget-card';
+import UncategorizedBudgetCard from './components/UncategorizedBudgetCard';
 import { useState } from 'react';
 import { useBudgets } from './context/BudgetContext';
 
@@ -38,13 +39,14 @@ export default function App() {
 
               return (
                 <BudgetCard
-                key={budget.id}
-                name={budget.name} 
-                amount={amount} 
-                max={budget.max}
-                onAddExpenseClick={() => openAddExpenseModal(budget.id)}
-              />)
+                  key={budget.id}
+                  name={budget.name} 
+                  amount={amount} 
+                  max={budget.max}
+                  onAddExpenseClick={() => openAddExpenseModal(budget.id)}
+                />)
             })}
+            <UncategorizedBudgetCard />
           </div>
         </Container>
         <AddBudgetModal show={showAddBudgetModal} handleClose={() => setShowAddBudgetModal(false)} />
