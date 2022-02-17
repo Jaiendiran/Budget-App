@@ -7,7 +7,7 @@ import { useBudgets } from './context/BudgetContext';
 
 export default function App() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
-  const { budgets } = useBudgets();
+  const { budgets, getBudgetExpenes } = useBudgets();
 
   return (
     <>
@@ -25,14 +25,17 @@ export default function App() {
               alignItems: 'flex-start',
             }}
           >
-            {budgets.map(budget => (
-              <BudgetCard
+            {budgets.map(budget => {
+              const amount = getBudgetExpenes(budget.id).reduce((total, expense) => total + expense.amount, 0);
+
+              return (
+                <BudgetCard
                 key={budget.id}
                 name={budget.name} 
-                amount={budget.amount} 
+                amount={amount} 
                 max={budget.max} 
-              />
-            ))}
+              />)
+            })}
           </div>
         </Container>
         <AddBudgetModal show={showAddBudgetModal} handleClose={() => setShowAddBudgetModal(false)} />
