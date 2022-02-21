@@ -47,7 +47,7 @@ export default function AddExpenseModal({show, handleClose, defaultBudgetId}) {
                       <Form.Select
                         defaultValue={defaultBudgetId}
                         ref={budgetIdRef}>
-                          <option value={UNCATEGORIZED_BUDGET_ID}>Uncategorized</option>
+                          <option id={UNCATEGORIZED_BUDGET_ID}>Uncategorized</option>
                           {budgets.map(budget => (
                             <option key={budget.id} value={budget.id}>{budget.name}</option>
                           ))}
